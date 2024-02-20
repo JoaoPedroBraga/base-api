@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const clientController = require('./../controllers/clientController')
 
-router.get('/', (req, res) => {
-    res.status(200).send('Entrei na Rota')
-    console.log("Entrei na minha rota /")
-})
+router.get('/', clientController.getClients);
+router.get('/:id', clientController.getOneClient)
 
 module.exports = router;
