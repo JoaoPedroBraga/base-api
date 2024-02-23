@@ -20,6 +20,14 @@ getOneClient = (req, res) => {
 }
 
 creatClient = (req, res) =>{
+    //Fazendo campo ser obrigatórios
+    if (!req.body.id){
+        return res.status(400).json({ message: "O campo ID e obrigtório"})   
+    }
+    if (!req.body.nome){
+        return res.status(400).json({ message: "O campo Nome e obrigtório"})   
+    }
+    
     const cliente = req.body
     if(Object.keys(cliente).length){
         clientes.push(cliente);
@@ -31,6 +39,7 @@ creatClient = (req, res) =>{
 
 updateCliente = (req, res) =>{
     let id = req.params.id;
+    
     let indice = findClientIndex(id);
     clientes[indice] = req.body;
     res.status(200).send('Cliente Atualizado')
